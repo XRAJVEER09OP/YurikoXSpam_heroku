@@ -41,7 +41,7 @@ _set_bot () {
     echo "Yuriko 𝙓 SPAM"
 
     python3 ./setup/updater.py ./requirements.txt requirements.txt
-    python3 -m YurikoXSpam
+    python3 -m RizoelXSpam
 }
 
 _set_bot
