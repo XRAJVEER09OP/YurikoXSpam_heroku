@@ -1,0 +1,47 @@
+#!/bin/bash
+
+
+_get_repolink () {
+    local regex
+    regex='(https?)://github.com/.+/.+'
+    if [[ $YUR_REPO == "rizoelxspam" ]]
+    then
+        echo "aHR0cHM6Ly9naXRodWIuY29tL01yUml6b2VsL1JpWm9lTFhTcGFtL2FyY2hpdmUvbWFpbi56aXA=" | base64 -d
+    elif [[ $YUR_REPO == "RIZOELXSPAM" ]]
+    then
+        echo "aHR0cHM6Ly9naXRodWIuY29tL01yUml6b2VsL1JpWm9lTFhTcGFtL2FyY2hpdmUvbWFpbi56aXA=" | base64 -d
+    elif [[ $YUR_REPO =~ $regex ]]
+    then
+        if [[ $YUR_REPO_BRANCH ]]
+        then
+            echo "${YUR_REPO}/archive/${RIZ_REPO_BRANCH}.zip"
+        else
+            echo "${YUR_REPO}/archive/main.zip"
+        fi
+    else
+        echo "aHR0cHM6Ly9naXRodWIuY29tL01yUml6b2VsL1JpWm9lTFhTcGFtL2FyY2hpdmUvbWFpbi56aXA=" | base64 -d
+    fi
+}
+
+
+_set_bot () {
+    local zippath
+    zippath="yurikoxspam.zip"
+    echo "  Downloading source code ..."
+    wget -q $(_get_repolink) -O "$zippath"
+    echo "  Unpacking Data ..."
+    YURPATH=$(zipinfo -1 "$zippath" | grep -v "/.");
+    unzip -qq "$zippath"
+    echo "Done"
+    echo "  Cleaning ..."
+    rm -rf "$zippath"
+    sleep 5
+    cd $YURPATH
+    echo "  Starting.  YurikoXSpam "
+    echo "Yuriko 𝙓 SPAM"
+
+    python3 ./setup/updater.py ./requirements.txt requirements.txt
+    python3 -m YurikoXSpam
+}
+
+_set_bot
