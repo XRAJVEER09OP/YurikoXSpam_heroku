@@ -1,7 +1,7 @@
 FROM sandy1709/catuserbot:alpine
 
 #clonning repo 
-RUN git clone https://github.com/XRAJVEER09OP/yurikoxspam.git/root/YurikoXSpam
+RUN git clone https://github.com/XRAJVEER09OP/YurikoXSpam.git/root/YurikoXSpam
 #working directory
 WORKDIR /root/YurikoXSpam
 
