@@ -37,11 +37,11 @@ _set_bot () {
     rm -rf "$zippath"
     sleep 5
     cd $RIZPATH
-    echo "  Starting.  RIZOELXSPAMX"
+    echo "  Starting.  RiZoeLXSpam "
     echo "Yuriko 𝙓 SPAM"
 
     python3 ./setup/updater.py ./requirements.txt requirements.txt
-    python3 -m RizoelXSpam
+    python3 -m RiZoeLXSpam
 }
 
 _set_bot
